@@ -4,27 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script defer>
+        $("#btn").on("click", function(){
+            submitContact(1,2,3,4);
+        });
+
+        function submitContact(url, to, subject, body) {
+            const jsonData = JSON.stringify({
+                // 'to':      to,
+                // 'subject': subject,
+                // 'body':    body
+                'name': "tesメン",
+                'email':      "123windam@gmail.com",
+                'subject': "テストfrom jquery",
+                'body':    "送ってみた"
+            })
+
+            $.ajax({
+                type: "POST",
+                // url:   url,
+                url:   url,
+                async: true,
+                contentType: 'application/json',
+                dataType: 'json',
+                data: jsonData,
+                error: function(data) { 
+                    console.log(data)
+                },
+                success: function(data) {
+                    console.log(data)
+                },
+            })
+        }
+    </script>
 </head>
 <body>
-<form name="contact" method="POST" data-netlify="true">
-    <p>
-        <label>Your Name: <input type="text" name="name" /></label>   
-    </p>
-    <p>
-        <label>Your Email: <input type="email" name="email" /></label>
-    </p>
-    <p>
-        <label>Your Role: <select name="role[]" multiple>
-        <option value="leader">Leader</option>
-        <option value="follower">Follower</option>
-        </select></label>
-    </p>
-    <p>
-        <label>Message: <textarea name="message"></textarea></label>
-    </p>
-    <p>
-        <button type="submit">Send</button>
-    </p>
-    </form>
+    <h1>ｗｗｗｗcom</h1>
+    <button id="btn">test click</button>
 </body>
 </html>
